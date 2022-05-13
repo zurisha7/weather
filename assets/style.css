@@ -36,5 +36,11 @@
     margin: 5px;
     height: 25px;
     border-radius: 5px;
+}
 
+.weather {
+       border: black solid 2px; 
+       margin: 5px;
+       display: flex;
+       flex-direction: column;
 }
