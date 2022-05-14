@@ -18,8 +18,10 @@
 
 .search {
     display: flex;
-    flex-direction: column;
     margin: 5px;
+    position: absolute;
+    width: 25%;
+    flex-direction: column;
 }
 
 .textbox {
@@ -43,4 +45,31 @@
        margin: 5px;
        display: flex;
        flex-direction: column;
+       width: 70%;
+       float: right;
+       padding: 10px;
+       overflow: auto;
+}
+
+
+.forecast {
+    width: 25%;
+    float: right;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+
+}
+
+.fiveday {
+    display: flex;
+}
+
+.card {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    background-color: cornflowerblue;
+    margin: 5px;
+    padding: 5px;
 }
