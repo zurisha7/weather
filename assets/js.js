@@ -14,7 +14,6 @@ var formSubmitHandler = function (event) {
   if (city) {
     getGeoCode(city);
     //clear other content
-    weatherContainerEl.textContent = "";
     cityInputEl.value = "";
   } else {
     alert("Please enter a city");
@@ -31,12 +30,19 @@ var formSubmitHandler = function (event) {
       var cityList = document.getElementById("list");
        cityList.appendChild(listInfo);
       }
-        
+        cityTime(city);
       };
 
  
 
 userFormEl.addEventListener("submit", formSubmitHandler);
+
+function cityTime (city){
+    var date = new Date();
+  document.getElementById('placeTime').textContent = city + "," + " " + date;
+
+
+}
  
 
 //get lat and lon results for weather API call through GeoCode
@@ -76,33 +82,90 @@ var getWeatherMap = function (lat, lon) {
       response.json()
       .then(function (data) {
         currentWeather (data.current);
-        console.log(data)
-          
+        forecast(data.daily)
+        console.log(data.current);
+        
       });
     }
   }); 
 };
 //create the daily weather
 var currentWeather = function(x) {
-  //loop to get info
-  var array = {};
-  for (var i = 0; i < x.length; i++);
-  {
-    console.log(x);
-  }
-  var temperature = x.temp;
-  document.getElementById("w1").innerText = temperature;
+  document.getElementById('wicon').src="http://openweathermap.org/img/w/"+x.weather[0].icon+".png"
+    var temperature = x.temp;
+  document.getElementById('w1').textContent = "Temp: " + temperature;
+
   var windSpeed = x.wind_speed;
-  console.log (windSpeed);
+  document.getElementById('w2').textContent = 'WindSpeed: ' + windSpeed;
+
   var UV = x.uvi;
-  console.log(UV);
+  document.getElementById('w3').textContent = 'UV: ' + UV
   var humid = x.humidity;
-  console.log(humid);
-
-  //var dailyText = JSON.stringify(x);
-  //       var dailyList = document.createElement("li");
-//       dailyList.innerText = dailyText;
-//       console.log(dailyText);
-//      weatherContainerEl.appendChild(dailyList);
-
+  document.getElementById('w4').textContent = 'Humidity: ' + humid;
+ 
 };
+
+function forecast (y) {
+
+// add date of forecast
+  var day1 = new Date ();
+  console.log(day1);
+// add temps from data
+  var day1Temp = y[0].temp.day;
+  document.getElementById('temp1').innerText = 'Temp: ' + day1Temp;
+
+  var day2Temp = y[1].temp.day;
+  document.getElementById('temp2').innerText = 'Temp: ' + day2Temp;
+
+  var day3Temp = y[2].temp.day;
+  document.getElementById('temp3').innerText = 'Temp: ' + day3Temp;
+
+  var day4Temp = y[3].temp.day;
+  document.getElementById('temp4').innerText = 'Temp: ' + day4Temp;
+
+  var day5Temp = y[4].temp.day;
+  document.getElementById('temp5').innerText = 'Temp: ' + day5Temp;
+
+//add humidity
+  var day1Humid = y[0].humidity;
+  document.getElementById('humid1').innerText = 'Humidity: ' + day1Humid;
+
+  var day2Humid = y[1].humidity;
+  document.getElementById('humid2').innerText = 'Humidity: ' + day2Humid;
+
+  var day3Humid = y[2].humidity;
+  document.getElementById('humid3').innerText = 'Humidity: ' + day3Humid;
+
+  var day4Humid = y[3].humidity;
+  document.getElementById('humid4').innerText = 'Humidity: ' + day4Humid;
+
+  var day5Humid = y[4].humidity;
+    document.getElementById('humid5').innerText = 'Humidity: ' + day5Humid;
+
+  //add windspeed to forecast
+  var day1Wind = y[0].wind_speed;
+  document.getElementById('wind1').innerText = "Wind: " + day1Wind;
+
+  var day2Wind = y[1].wind_speed;
+  document.getElementById('wind2').innerText = "Wind: " + day2Wind;
+
+  var day3Wind = y[2].wind_speed;
+  document.getElementById('wind3').innerText = "Wind: " + day3Wind;
+
+  var day4Wind = y[3].wind_speed;
+  document.getElementById('wind4').innerText = "Wind: " + day4Wind;
+
+  var day5Wind = y[4].wind_speed;
+  document.getElementById('wind5').innerText = "Wind: " + day5Wind;
+
+  // add icons to forecast
+  document.getElementById('icon1').src="http://openweathermap.org/img/w/"+y[0].weather[0].icon+".png"
+
+  document.getElementById('icon2').src="http://openweathermap.org/img/w/"+y[1].weather[0].icon+".png"
+
+  document.getElementById('icon3').src="http://openweathermap.org/img/w/"+y[2].weather[0].icon+".png"
+  
+  document.getElementById('icon4').src="http://openweathermap.org/img/w/"+y[3].weather[0].icon+".png"
+
+  document.getElementById('icon5').src="http://openweathermap.org/img/w/"+y[4].weather[0].icon+".png"
+}
