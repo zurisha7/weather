@@ -19,31 +19,18 @@ var formSubmitHandler = function (event) {
   } else {
     alert("Please enter a city");
   }
-  // var setCity = JSON.stringify(city);
-  // array.push(setCity);
-  // localStorage.setItem('input', array);
-  // displayInput(array)
-    
- //put input in local storage };
-
-//  var displayInput = function() {
-//   var userCity = localStorage.getItem('input');
-//    for (var i = 0; i < userCity.length; i++); {
-//       userCity += array
-     
-//      console.log(userCity);
-//    }
+  
    if(!city) {
      formSubmitHandler();
    }
    else{
  // create element and append
       var listInfo = document.createElement("li");
+      listInfo.classList.add('bg-cornflowerblue');
       listInfo.textContent = city;
       var cityList = document.getElementById("list");
        cityList.appendChild(listInfo);
       }
-    
         
       };
 
@@ -88,25 +75,34 @@ var getWeatherMap = function (lat, lon) {
     if (response.ok) {
       response.json()
       .then(function (data) {
-        console.log(data);
-        dailyWeather (data.daily) 
-        console.log(data.daily)
+        currentWeather (data.current);
+        console.log(data)
           
       });
     }
   }); 
 };
 //create the daily weather
-var dailyWeather = function(x) {
+var currentWeather = function(x) {
   //loop to get info
-  var array = [];
+  var array = {};
   for (var i = 0; i < x.length; i++);
   {
     console.log(x);
   }
-  var dailyText = JSON.stringify(x);
-      var dailyList = document.createElement("li");
-      dailyList.innerText = dailyText;
-      console.log(dailyText);
-     weatherContainerEl.appendChild(dailyList);
+  var temperature = x.temp;
+  document.getElementById("w1").innerText = temperature;
+  var windSpeed = x.wind_speed;
+  console.log (windSpeed);
+  var UV = x.uvi;
+  console.log(UV);
+  var humid = x.humidity;
+  console.log(humid);
+
+  //var dailyText = JSON.stringify(x);
+  //       var dailyList = document.createElement("li");
+//       dailyList.innerText = dailyText;
+//       console.log(dailyText);
+//      weatherContainerEl.appendChild(dailyList);
+
 };
