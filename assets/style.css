@@ -19,9 +19,10 @@
 .search {
     display: flex;
     margin: 5px;
-    position: absolute;
     width: 25%;
     flex-direction: column;
+    flex-wrap: wrap;
+    padding: 5px;
 }
 
 .textbox {
@@ -39,7 +40,10 @@
     height: 25px;
     border-radius: 5px;
 }
-
+.list li { 
+    text-decoration: none;
+    font-size: 25px bold;
+}
 .weather {
        border: black solid 2px; 
        margin: 5px;
@@ -53,7 +57,7 @@
 
 
 .forecast {
-    width: 25%;
+    width: 80%;
     float: right;
     display: flex;
     flex-wrap: wrap;
@@ -66,6 +70,7 @@
 }
 
 .card {
+    border: black solid 2px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;

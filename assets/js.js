@@ -5,6 +5,7 @@ var forecastContainerEl = document.querySelector("#forecast");
 var historyContainerEl = document.querySelector("#history");
 var currentList = document.querySelector("#currentW");
 var current = "";
+var array= [];
 
 var formSubmitHandler = function (event) {
   //prevent refreshing
@@ -18,10 +19,38 @@ var formSubmitHandler = function (event) {
   } else {
     alert("Please enter a city");
   }
-  console.log(city);
-};
+  // var setCity = JSON.stringify(city);
+  // array.push(setCity);
+  // localStorage.setItem('input', array);
+  // displayInput(array)
+    
+ //put input in local storage };
+
+//  var displayInput = function() {
+//   var userCity = localStorage.getItem('input');
+//    for (var i = 0; i < userCity.length; i++); {
+//       userCity += array
+     
+//      console.log(userCity);
+//    }
+   if(!city) {
+     formSubmitHandler();
+   }
+   else{
+ // create element and append
+      var listInfo = document.createElement("li");
+      listInfo.textContent = city;
+      var cityList = document.getElementById("list");
+       cityList.appendChild(listInfo);
+      }
+    
+        
+      };
+
+ 
 
 userFormEl.addEventListener("submit", formSubmitHandler);
+ 
 
 //get lat and lon results for weather API call through GeoCode
 function getGeoCode(city) {
@@ -54,13 +83,15 @@ var getWeatherMap = function (lat, lon) {
       "&lon=" +
       lon +
       "&appid=8da149333bb92aba5022c5a01def0b67&units=imperial"
-  ).then(function (response) {
+  )
+  .then(function (response) {
     if (response.ok) {
-      response.json().then(function (data) {
-        console.log(data);Pic = data.weather.icon
-        //console.log(dailyPic);
-       // var current = data.current;
-        dailyWeather (data.current)
+      response.json()
+      .then(function (data) {
+        console.log(data);
+        dailyWeather (data.daily) 
+        console.log(data.daily)
+          
       });
     }
   }); 
@@ -68,11 +99,11 @@ var getWeatherMap = function (lat, lon) {
 //create the daily weather
 var dailyWeather = function(x) {
   //loop to get info
-  // var array = [];
-  // for (var i = 0; i < x.length; i++);
-  // {
-  //   console.log(x);
-  // }
+  var array = [];
+  for (var i = 0; i < x.length; i++);
+  {
+    console.log(x);
+  }
   var dailyText = JSON.stringify(x);
       var dailyList = document.createElement("li");
       dailyList.innerText = dailyText;
