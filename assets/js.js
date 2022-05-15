@@ -109,7 +109,24 @@ function forecast (y) {
 
 // add date of forecast
   var day1 = new Date ();
-  console.log(day1);
+  document.getElementById('date1').textContent = day1
+
+  var day2 = new Date ();
+  day2.setDate(day1.getDate() + 1);
+  document.getElementById('date2').textContent = day2;
+
+  var day3 = new Date ();
+  day3.setDate(day2.getDate() + 1);
+  document.getElementById('date3').textContent = day3;
+
+  var day4 = new Date ();
+  day4.setDate(day3.getDate() + 1);
+  document.getElementById('date4').textContent = day4;
+
+  var day5 = new Date ();
+  day5.setDate(day4.getDate() + 1);
+  document.getElementById('date5').textContent = day5;
+  
 // add temps from data
   var day1Temp = y[0].temp.day;
   document.getElementById('temp1').innerText = 'Temp: ' + day1Temp;
