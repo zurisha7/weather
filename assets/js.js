@@ -24,7 +24,7 @@ var formSubmitHandler = function (event) {
    }
    else{
  // create element and append
-      var listInfo = document.createElement("li");
+      var listInfo = document.createElement("a");
       listInfo.classList.add('bg-cornflowerblue');
       listInfo.textContent = city;
       var cityList = document.getElementById("list");
