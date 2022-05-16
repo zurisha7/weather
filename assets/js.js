@@ -52,7 +52,7 @@ function getGeoCode(city) {
   var cityNoSpace = city.replace(/\s+/g, "");
 
   fetch(
-    "http://api.openweathermap.org/geo/1.0/direct?q=" +
+    "https://api.openweathermap.org/geo/1.0/direct?q=" +
       cityNoSpace +
       ",001&limit=5&appid=7a868f7f3e1c34350e2a6bd06e47eb63&units=imperial"
   ).then(function (response) {
